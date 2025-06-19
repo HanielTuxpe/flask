@@ -3,41 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <title>Clasificador de Insectos</title>
-<link rel="stylesheet" href="styles.css" />
-<script>
-    document
-    .getElementById("formulario")
-    .addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const abdomen = document.getElementById("abdomen").value;
-        const antena = document.getElementById("antena").value;
-
-        fetch("https://flask-pvn9.onrender.com/predict", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `abdomen=${abdomen}&antena=${antena}`,
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            const resultado = document.getElementById("resultado");
-            if (data.error) {
-            resultado.innerText = "Error: " + data.error;
-            resultado.style.color = "red";
-            } else {
-            resultado.innerText = "El insecto es un/a " + data.categoria;
-            resultado.style.color = "green";
-            }
-        })
-        .catch((error) => {
-            document.getElementById("resultado").innerText =
-            "Error en la solicitud.";
-            console.error("Error:", error);
-        });
-    });
-</script>
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='styles.css') }}"
+/>
+<script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 <body>
 <div class="container">
