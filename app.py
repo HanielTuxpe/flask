@@ -1,9 +1,11 @@
 from flask import Flask, request, render_template, jsonify
+from flask_cors import CORS
 import joblib
 import pandas as pd
 import logging
 
 app = Flask(__name__)
+CORS(app)
 
 # Configurar el registro
 logging.basicConfig(level=logging.DEBUG)
